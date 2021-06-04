@@ -1,0 +1,26 @@
+[
+{
+    "neve":"somlói galuska",
+    "elkeszitesiido":"30 perc",
+    "eleresiut":"kepek/somloi.jpg",
+    "leiras":"így kell elkészíteni a somlóit",
+    "kategoria":"édesség",
+    "ar":2500
+},
+{
+    "neve":"zsíros kenyér",
+    "elkeszitesiido":"3 perc",
+    "eleresiut":"kepek/zsirosk.jpg",
+    "leiras":"így kell elkészíteni a zsíros kenyeret",
+    "kategoria":"szendvics",
+    "ar":300
+},
+{
+    "neve":"gulyásleves",
+    "elkeszitesiido":"90 perc",
+    "eleresiut":"kepek/gulyasleves.jpg",
+    "leiras":"ebből áll a leves",
+    "kategoria":"leves",
+    "ar":1500
+}
+]
