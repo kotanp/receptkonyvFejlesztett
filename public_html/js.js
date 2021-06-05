@@ -11,22 +11,28 @@ $(function(){
     $("nav").on("click","#nevnov",rendezNevNovekvo);
     $("nav").on("click","#arcsokk",rendezArCsokkeno);
     $("nav").on("click","#arnov",rendezArNovekvo);
+    $("article").on("click",".etelnev",menuOsszeallitas);
 });
 
 var receptekTomb=[];
+var edessegszam=0;
+var osszelkido=0;
+var osszar=0;
 
 function kiir(){
     $("article").empty();
     for (var i = 0; i < receptekTomb.length; i++) {
         $("article").append("<div id='"+i+"'>");
-        $("#"+i).append("<div>"+receptekTomb[i].neve);
+        $("#"+i).append("<div class='etelnev'>"+receptekTomb[i].neve);
         $("#"+i).append("<div>"+receptekTomb[i].ar+ " ft");
         $("#"+i).append("<div>"+"<img src='"+receptekTomb[i].eleresiut+"'>");
         $("#"+i).append("<div>"+"Darab:"+"<input type='number'>");
         $("#"+i).append("<div>"+"<input type='button' id='torol' value='TÖRÖL'>");
         $("#"+i).append("<div>"+"<input type='button' id='modosit' value='MÓDOSÍT'>");
     }
-    
+    $("section").eq(1).append("<div id='menu'>");
+    $("#menu").append("<table id='tablemenu'>");
+    $("#tablemenu").append("<tr><th>Név</th><th>Elkészítési idő</th><th>Kategória</th><th>Összes elkészítési idő</th><th>Édességek száma</th><th>Össz ár</th></tr>");
 }
 
 function ujReceptFelvetel(){
@@ -125,4 +131,34 @@ function rendezArCsokkeno(){
     rendezArNovekvo();
     receptekTomb.reverse();
     kiir();
+}
+
+function menuOsszeallitas(){
+    var id=Number($(this).parent().attr("id"));
+    var hossz=$("table tr").length;
+    $("section table").append("<tr>");
+    for (var item in receptekTomb[id]) {
+        if (item==="neve") {
+            $("section table tr").eq(hossz).append("<td>" + receptekTomb[id][item] + " </td>");            
+        }
+        else if (item==="elkeszitesiido") {
+            $("section table tr").eq(hossz).append("<td>" + receptekTomb[id][item] + " </td>");
+            var ido=receptekTomb[id][item].split(" ");
+            osszelkido+=Number(ido[0]);
+        }
+        else if (item==="kategoria") {
+            $("section table tr").eq(hossz).append("<td>" + receptekTomb[id][item] + " </td>");
+            if (receptekTomb[id][item]==="édesség") {
+                edessegszam++;
+            }
+        }
+        else if (item==="ar") {
+            osszar+=receptekTomb[id][item];
+        }
+    }
+    $("section table tr").eq(hossz).append("<td>" + osszelkido + " </td>");
+    $("section table tr").eq(hossz).append("<td>" + edessegszam + " </td>");
+    $("section table tr").eq(hossz).append("<td>" + osszar + " </td>");
+    
+    
 }
